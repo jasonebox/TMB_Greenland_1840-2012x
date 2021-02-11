@@ -29,7 +29,7 @@ plt.title('Greenland land ice total mass balance reconstruction 1840-2012')
 plt.plot(dfBC.Year,dfBC.TMB,c='b',label='Box and Colgan 2013')
 plt.plot(df.year,df.TMB,c='r',label='via Kjeldsen et al (2015)')
 plt.axhline(y=0,linestyle='--',c='grey',)
-plt.ylabel('Gt')
+plt.ylabel('Gt / y')
 plt.xlim(1838,2014)
 plt.legend(loc=3)
 

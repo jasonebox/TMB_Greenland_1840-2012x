@@ -25,7 +25,7 @@ df=pd.read_csv('./Greenland_mass_balance_totals_1840-2012_ver_20141130_with_unce
 dfBC=pd.read_csv('./Greenland_mass_balance_1840-2011_Box_and_Colgan_2013.txt',delim_whitespace=True)
 print(dfBC.columns)
 
-plt.title('Greenland land ice total mass balance reconstruction')
+plt.title('Greenland land ice total mass balance reconstruction 1840-2012')
 plt.plot(dfBC.Year,dfBC.TMB,c='b',label='Box and Colgan 2013')
 plt.plot(df.year,df.TMB,c='r',label='via Kjeldsen et al (2015)')
 plt.axhline(y=0,linestyle='--',c='grey',)

@@ -1,5 +1,5 @@
 # Greenland land ice total mass balance reconstruction 1840-2012
-An empirical reconstruction of Greenland land ice total mass balance (TMB) appears in Box and Colgan (2013) and is updated in Kjeldsen et al (2015). Input data are described in Box (2013). Solid ice discharge is estimated via a fit of unsmoothed solid ice discharge (SID) data from Rignot et al (2008, 2011) with Box (2013) runoff data having 13-year gaussian smoothing. Box and Colgan (2013) Fig. 2 illustrates where 13 year smoothing hits a sill. The reconstruction was improved and regarding annual TBM, annual SID was estimated from a 6 year trailing gaussian fit, described and applied in Kjeldsen et al (2015)
+An empirical reconstruction of annual all Greenland land ice total mass balance (TMB) spanning 171 years 1840-2010 appears in Box and Colgan (2013) and is updated in Kjeldsen et al (2015) to span 1840-2012. Annual solid ice discharge (SID) is estimated via a fit of unsmoothed SID data (Rignot et al 2008, 2011) with Box (2013) runoff data having 13-year gaussian smoothing. Box and Colgan (2013) Fig. 2 illustrates where 13 year smoothing hits a sill. The reconstruction was improved and regarding annual TBM, annual SID was estimated from a 6 year trailing gaussian fit, described and applied in Kjeldsen et al (2015).
 
 # Data
 - Greenland_mass_balance_1840-2011_Box_and_Colgan_2013.txt
@@ -22,7 +22,7 @@ Lett., 35, L20502, doi:10.1029/2008GL035417.
 3, 187–191, doi:10.1038/ngeo765.
 
 
-![](plot_timeseries_TMB_1840-2012.png)
+![](plot_timeseries_TMB_1840-2012_with_SLR.png)
 
 # Misc
 Each of the reconstructions (Box and Colgan 2013; via Kjeldsen et al 2015) have monthly 5 km gridded Accumulation, Retention, Runoff, Accumulation that have been validated in Fettweis SMBMIP

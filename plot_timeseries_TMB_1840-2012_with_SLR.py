@@ -74,7 +74,7 @@ ax[cc].set_ylabel('eustatic sea level, mm')
 plt.xlim(1839,2013)
 plt.legend(loc=2)
 
-ly='x'
+ly='p'
 
 if ly =='x':plt.show()
 

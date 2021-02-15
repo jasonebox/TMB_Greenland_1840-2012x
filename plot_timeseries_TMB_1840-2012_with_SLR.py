@@ -24,7 +24,6 @@ plt.rcParams['axes.grid'] = True
 plt.rcParams['grid.alpha'] = 1
 plt.rcParams['grid.linewidth'] = th/2.
 
-fig=plt.figure(figsize=(16,10))
 
 df=pd.read_csv('./Greenland_mass_balance_totals_1840-2012_ver_20141130_with_uncert_via_Kjeldsen_et_al_2015.csv')
 print(df.columns)
@@ -32,20 +31,52 @@ print(df.columns)
 dfBC=pd.read_csv('./Greenland_mass_balance_1840-2011_Box_and_Colgan_2013.txt',delim_whitespace=True)
 print(dfBC.columns)
 
-plt.title('Greenland land ice total mass balance reconstruction 1840-2012')
-plt.plot(dfBC.Year,dfBC.TMB,c='b',label='Box and Colgan 2013',zorder=10)
-plt.plot(df.year,df.TMB,c='r',label='Kjeldsen et al (2015)')
-plt.fill_between(df.year, df.TMB-df["TMB 1sigma"], df.TMB+df["TMB 1sigma"],
+# ---------------------------- cumulate
+iyear=1840 ; fyear=2011 ; n_years=fyear-iyear+1
+
+cum=np.zeros((2,n_years))
+
+temp=0.
+k=-362
+for i in range(0,n_years):
+	temp+=dfBC.TMB[i]/k
+	cum[0,i]=temp
+temp=0.
+
+for i in range(0,n_years):
+	temp+=df.TMB[i]/k
+	cum[1,i]=temp
+    
+fig, ax = plt.subplots(2,1,figsize=(14,11))
+
+cc=0#---------------------------------------------------------------- annual
+tit='Greenland land ice total mass balance reconstruction 1840-2012'
+ax[0].set_title(tit)
+
+ax[cc].plot(dfBC.Year,dfBC.TMB,c='b',label='Box and Colgan 2013',zorder=10)
+ax[cc].plot(df.year,df.TMB,c='r',label='Kjeldsen et al (2015)')
+ax[cc].fill_between(df.year, df.TMB-df["TMB 1sigma"], df.TMB+df["TMB 1sigma"],
                  color='r',alpha=0.2,label='Kjeldsen et al (2015) uncertainty')
 
-plt.axhline(y=0,linestyle='--',c='grey')
-plt.ylabel('Gt y $^{-1}$')
-plt.xlim(1839,2013)
-plt.legend(loc=3)
+ax[cc].axhline(y=0,linestyle='--',c='grey')
+ax[cc].set_ylabel('Gt y $^{-1}$')
 
-ly='p'
+cc+=1#---------------------------------------------------------------- T diff
+ax[cc].plot(dfBC.Year[0:n_years],cum[0,:],c='b',label='Box and Colgan 2013',zorder=10)
+ax[cc].plot(df.year[0:n_years],cum[1,:],c='r',label='Kjeldsen et al (2015)')
+# ax[cc].fill_between(df.year, df.TMB-df["TMB 1sigma"], df.TMB+df["TMB 1sigma"],
+#                  color='r',alpha=0.2,label='Kjeldsen et al (2015) uncertainty')
+
+ax[cc].axhline(y=0,linestyle='--',c='grey')
+ax[cc].set_ylabel('eustatic sea level, mm')
+
+
+plt.xlim(1839,2013)
+plt.legend(loc=2)
+
+ly='x'
 
 if ly =='x':plt.show()
 
 if ly =='p':
-    plt.savefig('./plot_timeseries_TMB_1840-2012.png', dpi=100, bbox_inches='tight')
+    plt.savefig('./plot_timeseries_TMB_1840-2012_with_SLR.png', dpi=100, bbox_inches='tight')
